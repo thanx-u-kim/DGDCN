@@ -1,4 +1,4 @@
-# DGDCN (Reproduction Code)
+# Dynamic Graph Diffusion Convolutional Network for Traffic Speed Prediction(DGDCN)
 
 This repository contains the code used in our paper:
 
