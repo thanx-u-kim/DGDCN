@@ -1,8 +1,15 @@
 # Dynamic Graph Diffusion Convolutional Network for Traffic Speed Prediction(DGDCN)
 
-This repository contains the code used in our paper:
+Implementation of **DGDCN (Dynamic Graph Diffusion Convolutional Network)** in PyTorch.  
+This repository provides code and example setup for reproducing our experiments.
 
-> "Incorporating Traffic Flow Propagation Impacts into Dynamic Graph Diffusion Convolutional Network for Traffic Speed Prediction", H. Shon., S. Kim., Y. Shin., Y. Yoon., J. Lee., 2025  
+---
+## 📌 Publication Status
+> ⚠️ **Note:**  
+> This work is based on our manuscript currently under **major revision** for submission to a peer-reviewed journal.  
+> The paper is **not yet published**, and details may change in the final accepted version.  
+> The README and repository will be updated once the manuscript is accepted.
+---
 
 ## ✳️ Data Availability
 Due to security and privacy restrictions, the dataset used in the paper **cannot be shared**.  
