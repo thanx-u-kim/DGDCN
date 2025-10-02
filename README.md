@@ -39,7 +39,7 @@ Users may reproduce results with their own dataset following the same format.
 ### 📌 Notes
 - **T(Total Timesteps)** = total number of time steps.  
   - Example in our setting: `2880` (20 days × 144 steps per day, with 10-minute resolution).  
-- **N(Number of Nodes)** = number of locations (road network nodes) in the study area.  
+- **N(Number of Nodes)** = the number of road sections in the study area.  
 - Data should be placed in `../input_data/` by default, or paths can be adjusted in the code.
 
 ### 📑 Example Code
