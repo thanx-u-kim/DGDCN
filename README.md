@@ -12,14 +12,32 @@ This repository provides code and example setup for reproducing our experiments.
 ---
 
 ## ✳️ Data Availability
-Due to security and privacy restrictions, the dataset used in the paper **cannot be shared**.  
-Users may reproduce results with their own dataset following the same format:
-- `feat`: CSV file, shape (T, N)
-- `in_adj`, `out_adj`: N×N numpy adjacency matrices (`.npy`)
-- `dijkstra`: N×N CSV distance matrix
+Due to security and privacy restrictions, the dataset used in the paper **cannot be shared**.
+Users may reproduce results with their own dataset following the same format.
 
-> **Note**: Paths in `main.ipynb` assume `../input_data/` by default.  
-> Replace with your local paths.
+### 📂 Required Files and Shapes
+- `speed_data.csv` (`feat`):
+  - Shape: **(Total Timesteps x Number of Nodes)**
+- `inflow_adj_data.npy` & `outflow_adj_data.npy` (`in_adj`, `out_adj`):
+  - Shape: **(Total Timesteps x Number of Nodes x Number of Nodes)**
+- `dijkstra_matrix.csv` (`dijkstra`):
+  - Shape: **(Number of Nodes x Number of Nodes)**
+  - Shortest path distance matrix based on the road network topology
+
+### 📌 Notes
+- **Total Timesteps** = total number of time steps.  
+  - Example in our setting: `2880` (20 days × 144 steps per day, with 10-minute resolution).  
+- **Number of Nodes** = number of locations (road network nodes) in the study area.  
+- Data should be placed in `../input_data/` by default, or paths can be adjusted in the code.
+
+### 📑 Example Code
+```python
+# Data Loading
+feat = utils.load_dataset('../input_data/speed_data.csv')
+in_adj = utils.load_adjacency('../input_data/inflow_adj_data.npy')
+out_adj = utils.load_adjacency('../input_data/outflow_adj_data.npy')
+dijkstra = utils.load_dijkstra('../input_data/dijkstra_matrix.csv')
+```
 
 ## Requirements
 ```bash
