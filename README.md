@@ -17,17 +17,17 @@ Users may reproduce results with their own dataset following the same format.
 
 ### 📂 Required Files and Shapes
 - `speed_data.csv` (`feat`):
-  - Shape: **(Total Timesteps x Number of Nodes)**
+  - Shape: **(T x N)**
 - `inflow_adj_data.npy` & `outflow_adj_data.npy` (`in_adj`, `out_adj`):
-  - Shape: **(Total Timesteps x Number of Nodes x Number of Nodes)**
+  - Shape: **(T x N x N)**
 - `dijkstra_matrix.csv` (`dijkstra`):
-  - Shape: **(Number of Nodes x Number of Nodes)**
+  - Shape: **(N x N)**
   - Shortest path distance matrix based on the road network topology
 
 ### 📌 Notes
-- **Total Timesteps** = total number of time steps.  
+- **T(Total Timesteps)** = total number of time steps.  
   - Example in our setting: `2880` (20 days × 144 steps per day, with 10-minute resolution).  
-- **Number of Nodes** = number of locations (road network nodes) in the study area.  
+- **N(Number of Nodes)** = number of locations (road network nodes) in the study area.  
 - Data should be placed in `../input_data/` by default, or paths can be adjusted in the code.
 
 ### 📑 Example Code
