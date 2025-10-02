@@ -2,7 +2,13 @@
 
 Implementation of **DGDCN (Dynamic Graph Diffusion Convolutional Network)** in PyTorch.  
 This repository provides code and example setup for reproducing our experiments.
----
+
+## 📌 Publication Status
+> ⚠️ **Note:**  
+> This work is based on our manuscript currently under **major revision** for submission to a peer-reviewed journal.  
+> The paper is **not yet published**, and details may change in the final accepted version.  
+> The README and repository will be updated once the manuscript is accepted.
+
 ## Requirements
 Our code is based on Python 3.8.13).
 Tested on **PyTorch 1.11.0 (torch==1.11.0, CUDA 11.3)**.
@@ -13,18 +19,9 @@ Major dependencies are listed below:
 - torch==1.11.0 # PyTorch 1.11.0
 - pytorch-lightning==1.6.4
 - torchmetrics==0.9.0
-
 ```bash
 pip install -r requirements.txt
 ```
-
----
-## 📌 Publication Status
-> ⚠️ **Note:**  
-> This work is based on our manuscript currently under **major revision** for submission to a peer-reviewed journal.  
-> The paper is **not yet published**, and details may change in the final accepted version.  
-> The README and repository will be updated once the manuscript is accepted.
----
 
 ## ✳️ Data Availability
 Due to security and privacy restrictions, the dataset used in the paper **cannot be shared**.
@@ -53,3 +50,11 @@ in_adj = utils.load_adjacency('../input_data/inflow_adj_data.npy')
 out_adj = utils.load_adjacency('../input_data/outflow_adj_data.npy')
 dijkstra = utils.load_dijkstra('../input_data/dijkstra_matrix.csv')
 ```
+
+## Run (Notebook)
+1. Open the `main.ipynb` file.  
+2. Execute all cells in order from top to bottom.  
+3. Make sure the data path (`../input_data/`) matches your dataset location and adjust if necessary.  
+4. Check the training arguments (`args`). The notebook provides default values for our model, but you may adjust them as needed.  
+5. Running all cells will start training, save checkpoints, and produce outputs.  
+6. At the end of the notebook, evaluation results (e.g., RMSE, MAE, MAPE) and sample predictions will be displayed.
