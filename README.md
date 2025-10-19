@@ -65,35 +65,13 @@ After Step 2 (map-matching & graph networks) is done, Steps 3–5 are independen
 
 ### Steps & I/O at a glance
 
-**Step 1 — DTG Cleaning** (`01_DTG_Cleaning.ipynb`)  
-**Goal:** Standardize trajectories from raw DTG.  
-**Does:** Remove outliers/idling/invalid GPS; produce per-trip/day structures.  
-**In:** Raw DTG files.  
-**Out:** Cleaned per-trip data & a trajectory dictionary.
-
-**Step 2 — Map-Matching & Graph Networks** (`02_Mapmatching_and_Graph_Networks.ipynb`)  
-**Goal:** Map-match trajectories to road links and derive link-level metrics.  
-**Does:** Match to road links; compute per-link speed, connectivity; emit per-slice `in_flow`, `out_flow`, `speed` pickles.  
-**In:** Step 1 outputs.  
-**Out:** Per-slice speed, inflow & outflow adjacency artifacts (pickles).
-
-**Step 3 — Dynamic Flow Adjacency Matrices** (`03_Compute_Flow_Matrices.ipynb`)  
-**Goal:** Build time-varying inflow/outflow adjacency tensors.  
-**Does:** Aggregate per-slice flow to `(T, N, N)`.  
-**In:** Step 2 outputs (`./Mapmatching_output/...`).  
-**Out:** `inflow_adj_data.npy`, `outflow_adj_data.npy` (shape `T × N × N`).
-
-**Step 4 — Dijkstra Distance Matrix** (`04_Compute_Dijkstra_Distances.ipynb`)  
-**Goal:** All-pairs shortest-path distance on the road graph.  
-**Does:** Compute Dijkstra distances for every node pair.  
-**In:** **Any single** `speed_*.pkl` from Step 2 (contains the network/length info needed).  
-**Out:** `dijkstra_matrix.csv` (shape `N × N`).
-
-**Step 5 — Speed Data Assembly** (`05_Assemble_Speed_Data.ipynb`)  
-**Goal:** Create the unified `(T, N)` speed feature matrix.  
-**Does:** Merge per-slice speeds, fill gaps (time-based interpolation), export CSV.  
-**In:** Step 2 outputs (`./Mapmatching_output/...`).  
-**Out:** `speed_data.csv` (shape `T × N`).
+| Step | Notebook | Goal | Main Operations | Input | Output |
+|------|-----------|------|-----------------|--------|---------|
+| **1. DTG Cleaning** | `01_DTG_Cleaning.ipynb` | Standardize raw DTG trajectories | Remove outliers, idling, invalid GPS; organize per-trip/day | Raw DTG files | Cleaned trip data & trajectory dictionary |
+| **2. Map-Matching & Graph Networks** | `02_Mapmatching_and_Graph_Networks.ipynb` | Map-match trajectories and derive link-level metrics | Match to road links; compute per-link speed & connectivity; export per-slice `in_flow`, `out_flow`, `speed` pickles | Step 1 outputs | Map-matched samples & per-slice pickles |
+| **3. Dynamic Flow Matrices** | `03_Compute_Flow_Matrices.ipynb` | Build time-varying inflow/outflow adjacency tensors | Aggregate flow sequences into `(T, N, N)` | Step 2 outputs (`./Mapmatching_output/...`) | `inflow_adj_data.npy`, `outflow_adj_data.npy` (`T × N × N`) |
+| **4. Dijkstra Distance Matrix** | `04_Compute_Dijkstra_Distances.ipynb` | Compute all-pairs shortest-path distances | Run Dijkstra on the road graph using link lengths | Any single `speed_*.pkl` from Step 2 | `dijkstra_matrix.csv` (`N × N`) |
+| **5. Speed Data Assembly** | `05_Assemble_Speed_Data.ipynb` | Create unified speed feature matrix | Merge per-slice speeds, interpolate gaps, export CSV | Step 2 outputs (`./Mapmatching_output/...`) | `speed_data.csv` (`T × N`) |
 
 ---
 
@@ -101,6 +79,10 @@ After Step 2 (map-matching & graph networks) is done, Steps 3–5 are independen
 Place these under `input_data/` (or adjust the paths in the notebook):
 
 ## Run (Notebook)
+
+Once preprocessing is completed and the four input files are ready under `input_data/`,  
+you can train and evaluate DGDCN using `main.ipynb` as follows:
+
 1. Open the `main.ipynb` file.  
 2. Execute all cells in order from top to bottom.  
 3. Make sure the data path (`../input_data/`) matches your dataset location and adjust if necessary.  
