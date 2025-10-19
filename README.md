@@ -19,6 +19,15 @@ Major dependencies are listed below:
 - torch==1.11.0 # PyTorch 1.11.0
 - pytorch-lightning==1.6.4
 - torchmetrics==0.9.0
+
+** For Preprocessing **
+- geopandas == 0.10.2
+- shapely == 1.8.2
+- pyproj == 3.3.1
+- rtree == 1.0.0
+- fiona == 1.8.21
+- networkx == 2.8.2
+- osmnx == 1.2.0
 ```bash
 pip install -r requirements.txt
 ```
