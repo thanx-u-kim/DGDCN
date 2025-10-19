@@ -33,8 +33,13 @@ pip install -r requirements.txt
 ```
 
 ## ✳️ Data Availability
-Due to security and privacy restrictions, the dataset used in the paper **cannot be shared**.
-Users may reproduce results with their own dataset following the same format.
+⚠️ Due to security and privacy restrictions, the dataset used in the paper **cannot be shared**.
+However, users may reproduce comparable datasets using their own DTG or GPS-based traffic data following the same preprocessing pipeline.
+
+### 📊 Dataset Description
+The dataset used in this study consists of **DTG (Digital TachoGraph) data collected from taxis of Seoul, South Korea**.  
+Each DTG data includes **GPS coordinates (i.e., latitude, longitude, altitude), speeds, and recorded times** collected at **10-second intervals**.  
+In this research, we used data collected on **weekdays of four weeks of April 2018**, covering extensive urban traffic patterns in Seoul.  
 
 ### 📂 Required Files and Shapes
 - `speed_data.csv` (`feat`):
